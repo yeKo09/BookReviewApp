@@ -1,0 +1,46 @@
+nav{
+    background-color: #FFE4B5;
+    padding:0.6rem;
+}
+.navSearchBox{
+    padding:1.5rem;
+    margin-left:2.7rem;
+}
+#searchForm select{
+    font-size:1.8rem;
+    border:0.1rem solid gray;
+    border-radius:0.6rem;
+    padding:0.3rem;
+}
+.navInfo{
+    margin-left:0.5rem;
+    margin-top:2.2rem;
+}
+.navInfo a,.navInfo span{
+    color:black;
+    font-size:1.8rem;
+    font-weight: 700;
+}
+#dropdownBooks a{
+    color:inherit;
+}
+.navInfo a,#dropdownBooks a{
+    transition: opacity 1s linear;
+}
+.navInfo a:hover,#dropdownBooks a:hover{
+    opacity: 0.5;
+}
+#searchBooks{
+    padding:0.6rem;
+    display: inline-block;
+    margin-left:0.8rem;
+    border-radius:1.2rem;
+    border:0.1rem solid gray;
+}
+.navTitle,.navSearchBox,.navInfo{
+    float:left;
+}
+#actualTitle{
+    
+    font-size:5rem;
+}
