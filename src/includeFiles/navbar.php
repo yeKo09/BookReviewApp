@@ -45,7 +45,7 @@
             <div class="navInfo">
                 <?php 
                     if($_SESSION['userLoggedIn']){
-                        echo "<a href='".$_SESSION['userId']."' target='_self'>My Account</a>";
+                        echo "<a href='".$_SESSION['user']->getID()."' target='_self'>My Account</a>";
                     }else{
                         echo "<span>Log in</span>";
                     }

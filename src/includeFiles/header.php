@@ -1,16 +1,41 @@
 <?php
     require_once '../database/pdo.php';
+    include 'user.php';
     session_start();
     $lHolder = "Location:".$_SERVER['PHP_SELF'];
     if(!isset($_SESSION['userLoggedIn'])){
         $_SESSION['userLoggedIn'] = false;
+        
     }
+
+    if(!isset($_SESSION['user'])){
+        $_SESSION['user'] = new User();
+    }
+
     if(!isset($_SESSION['triedToLogin'])){
         $_SESSION['triedToLogin'] = false;
     }
+
     if(!isset($_SESSION['rememberMe'])){
         $_SESSION['rememberMe'] = false;
     }
+
+    function createNewUser($row){
+        $user = new User();
+        $user->setID($row['user_id']);
+        $user->setUserName($row['username']);
+        $user->setPassword($row['u_password']);
+        $user->setEmail($row['email']);
+        $user->setFirstName($row['name']);
+        $user->setLastName($row['surname']);
+        $user->setAbout($row['about']);
+        $user->setMemberSince($row['member_since']);
+        $user->setFrom($row['user_from']);
+        $user->setBirthDate($row['birth_date']);
+        $user->setGender($row['gender']);
+        $_SESSION['user'] = $user;
+    }
+
     if(isset($_POST['loginBtn']) && isset($_POST['email_or_username']) && isset($_POST['uPword'])){
         $sql = "SELECT * FROM users u WHERE (u.username = :udata OR u.email= :udata) AND u.u_password = :upword";
         $stmt = $pdo->prepare($sql);
@@ -21,9 +46,7 @@
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($row){
             $_SESSION['userLoggedIn'] = true;
-            $_SESSION['userId'] = $row['user_id'];
-            $_SESSION['userName'] = $row['username'];
-            $_SESSION['uPword'] = $_POST['uPword'];
+            createNewUser($row);
             if(isset($_POST['rememberUser']) && $_POST['rememberUser'] === 'Yes'){
                 $_SESSION['rememberMe'] = true;
             }else{
@@ -38,18 +61,21 @@
         header($lHolder);
         return;
     }
+
+
     if(isset($_POST['logOut'])){
         if($_SESSION['rememberMe']){
             $remindMe = true;
-            $userName = $_SESSION['userName'];
-            $password = $_SESSION['uPword'];
+            $userName = $_SESSION['user']->getUserName();
+            $password = $_SESSION['user']->getPassword();
         }
         session_destroy();
         session_start();
         if($remindMe){
             $_SESSION['rememberMe'] = true;
-            $_SESSION['userName'] = $userName;
-            $_SESSION['uPword'] = $password;
+            $_SESSION['user'] = new User();
+            $_SESSION['user']->setUserName($userName);
+            $_SESSION['user']->setPassword($password);
         }
         /*POST-REDIRECT-GET*/ 
         header($lHolder);
@@ -67,12 +93,12 @@
                     <div class="loginBox">
                         <input type="text" name="email_or_username" id="email_or_username" placeholder="Email/Username"
                         size="15" value='<?php if($_SESSION['rememberMe'])
-                        { echo $_SESSION['userName']; }else{ echo "";}?>' required>
+                        { echo $_SESSION['user']->getUserName(); }else{ echo "";}?>' required>
                     </div>
                     <div class="loginBox">
                         <input type="password" name="uPword" id="uPword" placeholder="Password" size="15"
                         value='<?php if($_SESSION['rememberMe'])
-                        { echo $_SESSION['uPword']; }else{ echo "";}?>' required>
+                        { echo $_SESSION['user']->getPassword(); }else{ echo "";}?>' required>
                     </div>
                     <input type="submit" name="loginBtn" id="loginBtn" value="Sign in" class="cBtn">
                     <button type="button" id="createBtn" value="Sign up" class="cBtn sUpBtn">Sign up!</button>
@@ -86,8 +112,8 @@
             <?php }else{?>
                 <div id="loggedIn">
                     <?php echo "<span id='userNamePlace'>Successfully logged in as " 
-                    . "<a href='#SessionUserIdBurayaGelecek' target='_self' class='linkToProfile'>"
-                    .$_SESSION['userName']. "</a>" . "</span>";?>
+                    . "<a href='".$_SESSION['user']->getID() . "' target='_self' class='linkToProfile'>"
+                    .$_SESSION['user']->getUserName(). "</a>" . "</span>";?>
                     <form method="POST" style="display:inline-block;">
                         <input type="submit" class="cBtn" value="Log out" name="logOut">
                     </form>

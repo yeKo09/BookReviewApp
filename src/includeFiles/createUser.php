@@ -26,7 +26,7 @@
             die();
         }
         /*Now,user will automatically log in but for navbar purposes i have to get the id of the user*/
-        $query2 ="SELECT user_id,username,u_password FROM users u WHERE u.username = :userName";
+        $query2 ="SELECT * FROM users u WHERE u.username = :userName";
         $stmt4 = $pdo->prepare($query2);
         $stmt4->execute(array(
             ':userName' => $_POST['userName']
@@ -34,9 +34,7 @@
         $row = $stmt4->fetch(PDO::FETCH_ASSOC);
         if($row){
             $_SESSION['userLoggedIn'] = true;
-            $_SESSION['userId'] = $row['user_id'];
-            $_SESSION['userName'] = $row['username'];
-            $_SESSION['uPword'] = $row['u_password'];
+            createNewUser($row);
             /*The website will remember your information on your very first login to the website.*/
             $_SESSION['rememberMe'] = true;
         }else{
