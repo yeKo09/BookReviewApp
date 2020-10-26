@@ -38,7 +38,7 @@
                             }
                         ?>
                     </select>
-                    <input type="text" name="searchBooks" id="searchBooks" size="50" placeholder = "Title/Author to search the book">
+                    <input type="text" name="searchBooks" id="searchBooks" size="50" placeholder = "Title/Author to search the books">
                     <input type="submit" class="cBtn" name="searchBooksBtn" id="searchBooksBtn" value="Search">
                 </form>
             </div>
@@ -53,7 +53,9 @@
             </div>
         </div>
     </nav>
-    <div id="deneme"></div>
+    <div id="bookResults" class="clearfix">
+        <div id="bookData" class="clearfix"></div>
+    </div>
     <script src="navbar.js"></script>
 </body>
 </html>

@@ -19,7 +19,7 @@
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if(!$rows){
             $bookData['Response'] = 'Failed';
-            $bookData['Text'] = 'No Matches found';
+            $bookData['Text'] = 'No matches found';
         }else{
             $bookData += $rows;
         }

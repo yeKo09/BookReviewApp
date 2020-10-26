@@ -41,6 +41,53 @@ nav{
     float:left;
 }
 #actualTitle{
-    
     font-size:5rem;
+}
+#dropdownBooks{
+    height: auto;
+    padding:1.2rem;
+}
+#bookResults{
+    display:none;
+    width: 42rem;
+}
+#bookImage{
+    width: 6rem;
+    height: 7.1rem;
+    float:left;
+    margin-right:0.6rem;
+}
+#bookData{
+    width:40rem;
+    float:left;
+    background-color:#FFFACD;
+    border-radius:0.6rem;
+    box-shadow: 5px 10px 18px #888888;
+    position: absolute;
+    top:12.5rem;
+    left:61rem;
+}
+.bookTitle{
+    font-weight: 800;
+    font-size:2rem;
+}
+#authorNames{
+    margin:0.6rem 0;
+}
+.dropdownElement{
+    height:7.1rem;
+}
+#nothingFound{
+    text-align:center;
+    font-weight: 800;
+    padding:0.4rem;
+}
+#dropdownBooks li:last-child{
+    text-align:center;
+}
+#searchAll{
+    font-size:2rem;
+    font-weight: 800;
+    color: blue !important;
+    text-decoration: underline;
 }

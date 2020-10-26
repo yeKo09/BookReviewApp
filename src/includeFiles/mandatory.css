@@ -22,3 +22,10 @@ a{
     clear: both;
     display: table;
 }
+ul{
+    list-style-type: none;
+}
+img{
+    width:100%;
+    height:100%;
+}
