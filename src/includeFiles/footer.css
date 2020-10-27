@@ -1,0 +1,23 @@
+footer{
+    text-align: center;
+    background-color: #FFE4B5;
+    padding:1rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+}
+footer p{
+    margin-top:1.8rem;
+    font-weight: 800;
+}
+#gitPage{
+    color:black;
+    font-size: 2rem;
+    transition: opacity 1s linear;
+}
+#gitPage:hover{
+    opacity: 0.6;
+}

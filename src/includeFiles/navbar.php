@@ -9,18 +9,6 @@
     }
     $rows = getGenres($pdo);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello!</title>
-    <link rel="stylesheet" href="mandatory.css">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="navbar.css">
-</head>
-<body>
-    <?php include 'header.php'; ?>
     <nav>
         <div class="container clearfix">
             <div class="navTitle">
@@ -56,6 +44,6 @@
     <div id="bookResults" class="clearfix">
         <div id="bookData" class="clearfix"></div>
     </div>
-    <script src="navbar.js"></script>
+    <script src="../includeFiles/navbar.js"></script>
 </body>
 </html>

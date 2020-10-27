@@ -16,7 +16,7 @@ function searchABook(e){
     if(e.target.value.length === 0){
         c.style.display = 'none';
     }else{
-        let url = "searchBooksDropdown.php?q=";
+        let url = "../includeFiles/searchBooksDropdown.php?q=";
         url += e.target.value;
         let xhr = new XMLHttpRequest();
         xhr.onload = function(){

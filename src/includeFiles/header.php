@@ -1,6 +1,6 @@
 <?php
     require_once '../database/pdo.php';
-    include 'user.php';
+    include '../includeFiles/user.php';
     session_start();
     $lHolder = "Location:".$_SERVER['PHP_SELF'];
     if(!isset($_SESSION['userLoggedIn'])){
@@ -84,7 +84,7 @@
 ?>
     <header>
         <div class="container clearfix">  
-            <h1 class="greet">Let's Review a Book!</h1>
+            <h1 class="greet">WELCOME!</h1>
             <?php
                 if(isset($_SESSION['userLoggedIn'])){
                     if(!$_SESSION['userLoggedIn']){
@@ -123,8 +123,8 @@
     </header>
     <div class="clearfix"></div>
     <div id="signUpBox">
-        <?php include 'createUser.php'?>
+        <?php include '../includeFiles/createUser.php'?>
     </div>
-    <script src="header.js">
+    <script src="../includeFiles/header.js">
     </script>
     
